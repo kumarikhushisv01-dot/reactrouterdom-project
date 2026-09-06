@@ -8,10 +8,10 @@ import { useNavigate } from "react-router-dom";
 
 
 const USER_DATA = [
-  {id:1,name:"Ram", email:"Ram@gmail.com",password:"12ab"},
-  {id:2,name:"Ram2", email:"Ram1@gmail.com",password:"12ab"},
-  {id:3,name:"Ram3", email:"Ram2@gmail.com",password:"12ab"},
-  {id:4,name:"Ram4", email:"Ram3@gmail.com",password:"12ab"},
+  {id:1,name:"ram", email:"ram@gmail.com",password:"12ab"},
+  {id:2,name:"ram2", email:"ram1@gmail.com",password:"12ab"},
+  {id:3,name:"ram3", email:"ram2@gmail.com",password:"12ab"},
+  {id:4,name:"ram4", email:"ram3@gmail.com",password:"12ab"},
 ]
 
 
@@ -27,9 +27,25 @@ const navigate = useNavigate()
 const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
   e.preventDefault()
   let isFound = false
+  if (!email || !password ){
+      window.alert("Emaol and Passwoyd is requaired")
+    }
+
   for (let index = 0; index < USER_DATA.length; index++) {
     const element = USER_DATA[index];
-    if(email===element.email && password===element.password){ 
+    if(email.toLowerCase()!== element.email){
+      window.alert("Account does not excist")
+      break
+    }
+    if(email.toLowerCase()===element.email && password!==element.password){
+      window.alert("Password missmach")
+      break
+    }
+      
+    
+    
+
+    if(email.toLowerCase()===element.email && password===element.password){ 
       isFound=true;
       window.alert("Login succusesfull")
       navigate('/profile')
@@ -61,7 +77,7 @@ const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
             <div>
               <Label>Email</Label>
               <div className="mt-2">
-                <Input type="email" onChange={(e)=>{setEmail(e.target.value)}} className="border border-purple-500"/>
+                <Input type="email" required onChange={(e)=>{setEmail(e.target.value)}} className="border border-purple-500"/>
               </div>
               
             </div>
@@ -71,7 +87,7 @@ const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
                 <p className="ml-auto inline-block underline-offset-2 hover:underline ">Forget Passrword</p>
               </div>
               <div>
-                <Input type="passwrd" onChange={(e)=>{setPassword(e.target.value)}} className="border border-purple-500"/>
+                <Input type="password" required onChange={(e)=>{setPassword(e.target.value)}} className="border border-purple-500"/>
               </div>
               
             </div>
