@@ -46,34 +46,40 @@ const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
   return (
     <>
 
-    <Card className="grid w-90 h-90 m-auto ">
+    <Card className="grid w-90 h-90 m-auto border-2 border-purple-500 ">
         <form onSubmit={handleSubmit}>
 
-      <CardHeader>
-        <CardTitle>Login Page</CardTitle>
-        <CardDescription>
+      <CardHeader className="m-5">
+        <CardTitle className="text-2xl text-purple-700 font-extrabold">Login Page</CardTitle>
+        <CardDescription className="text-purple-500">
           Enter your information
         </CardDescription>
        
       </CardHeader>
-      <CardContent>
+      <CardContent className="mt-10 m-5 ">
           <div className="grid gap-4">
             <div>
               <Label>Email</Label>
-              <Input type="email" onChange={(e)=>{setEmail(e.target.value)}}/>
+              <div className="mt-2">
+                <Input type="email" onChange={(e)=>{setEmail(e.target.value)}} className="border border-purple-500"/>
+              </div>
+              
             </div>
-            <div>
-              <div className="flex">
+            <div className="mt-2">
+              <div className="flex mb-2">
                 <Label >Password</Label>
                 <p className="ml-auto inline-block underline-offset-2 hover:underline ">Forget Passrword</p>
               </div>
-              <Input type="passwrd" onChange={(e)=>{setPassword(e.target.value)}}/>
+              <div>
+                <Input type="passwrd" onChange={(e)=>{setPassword(e.target.value)}} className="border border-purple-500"/>
+              </div>
+              
             </div>
           </div>
         
       </CardContent>
-      <CardFooter className="flex-col gap-3">
-        <Button type="submit" className="w-full">Login</Button>
+      <CardFooter className="flex-col gap-3 mt-10 m-5 ">
+        <Button type="submit" className="w-full bg-purple-600">Login</Button>
        
       </CardFooter>
       </form>
