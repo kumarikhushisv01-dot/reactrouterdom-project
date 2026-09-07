@@ -1,9 +1,37 @@
-import { createBrowserRouter } from "react-router-dom"
+import { createBrowserRouter, Navigate, Outlet } from "react-router-dom"
 import LoginPage from "./components/LoginPage"
 import ProfilePage from "./components/ProfilePage"
+
+function ProtectedRoute (){
+    const data = localStorage.getItem("user")
+    const value = JSON.parse(data)
+    const isLogin = value.islogin
+    return isLogin ? <Outlet/> : <Navigate to={"/"} replace/>
+}
+
+function GuestUser  (){
+      const data = localStorage.getItem("user")
+    const value = JSON.parse(data)
+    const isLogin = value.islogin
+    return isLogin? <Navigate to={"/profile"} replace/>:<Outlet/>
+
+}
 export const router = createBrowserRouter(
     [
-        {path:'/',element:<LoginPage/>},
-        {path:'/profile', element:<ProfilePage/>}
+        {
+            element:<ProtectedRoute/>,
+            children:[{
+               path:"/profile",element:<ProfilePage/>,
+               children:[{
+                path:"/edite", element:<Edite/>
+               }]
+            }]
+        },
+        {
+            element: <GuestUser/>,
+            children:[{
+                path:"/", element:<LoginPage/>
+            }]
+        }
     ]
 )

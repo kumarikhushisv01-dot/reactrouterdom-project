@@ -28,18 +28,19 @@ const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
   e.preventDefault()
   let isFound = false
   if (!email || !password ){
-      window.alert("Email and Passwoyd is requaired")
+      window.alert("Email and Password is requaired")
     }
 
   for (let index = 0; index < USER_DATA.length; index++) {
-    const element = USER_DATA[index];
+    const element = USER_DATA[index]; 
+    console.log(email,element.email)
     if(email.toLowerCase()!== element.email){
       window.alert("Account does not excist")
-      break
+      
     }
     if(email.toLowerCase()===element.email && password!==element.password){
       window.alert("Password missmach")
-      break
+      
     }
       
     
@@ -48,7 +49,7 @@ const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
     if(email.toLowerCase()===element.email && password===element.password){ 
       isFound=true;
       window.alert("Login succusesfull")
-      localStorage.setItem("user",JSON.stringify({id:element.id,email,name:element.name}))
+      localStorage.setItem("user",JSON.stringify({id:element.id,email,name:element.name, islogin:true}))
       navigate('/profile')
 
 
