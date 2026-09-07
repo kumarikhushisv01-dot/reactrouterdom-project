@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate, Outlet } from "react-router-dom"
 import LoginPage from "./components/LoginPage"
 import ProfilePage from "./components/ProfilePage"
+import ProfileEdite from "./components/ProfileEdite"
 
 function ProtectedRoute (){
     const data = localStorage.getItem("user")
@@ -23,7 +24,7 @@ export const router = createBrowserRouter(
             children:[{
                path:"/profile",element:<ProfilePage/>,
                children:[{
-                path:"/edite", element:<Edite/>
+                path:"edite", element:<ProfileEdite/>
                }]
             }]
         },

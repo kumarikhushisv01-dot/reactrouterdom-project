@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Card } from './ui/card'
+import { Outlet } from 'react-router-dom'
 
 const ProfilePage = () => { 
   const [user,setUser] = useState()
@@ -19,6 +20,7 @@ const ProfilePage = () => {
       <p> your email id : {user?.email || "Gest email"}</p>
       <p> your name : {user?.name || "Guet User"}</p>
     </Card>
+    <Outlet/>
     
     </>
   )
