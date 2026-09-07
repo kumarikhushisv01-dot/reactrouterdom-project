@@ -28,7 +28,7 @@ const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
   e.preventDefault()
   let isFound = false
   if (!email || !password ){
-      window.alert("Emaol and Passwoyd is requaired")
+      window.alert("Email and Passwoyd is requaired")
     }
 
   for (let index = 0; index < USER_DATA.length; index++) {
