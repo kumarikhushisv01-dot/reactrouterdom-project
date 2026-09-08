@@ -8,10 +8,10 @@ import { useNavigate } from "react-router-dom";
 
 
 const USER_DATA = [
-  {id:1,name:"ram", email:"ram@gmail.com",password:"12ab"},
-  {id:2,name:"ram2", email:"ram1@gmail.com",password:"12ab"},
-  {id:3,name:"ram3", email:"ram2@gmail.com",password:"12ab"},
-  {id:4,name:"ram4", email:"ram3@gmail.com",password:"12ab"},
+  {id:1,name:"ram", email:"ram@gmail.com",password:"12ab" ,role:"user"},
+  {id:2,name:"ram2", email:"ram1@gmail.com",password:"12ab" ,role:"user"},
+  {id:3,name:"ram3", email:"ram2@gmail.com",password:"12ab" ,role:"admin"},
+  {id:4,name:"ram4", email:"ram3@gmail.com",password:"12ab", role:"admin"}
 ]
 
 
@@ -26,37 +26,25 @@ const navigate = useNavigate()
 
 const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
   e.preventDefault()
-  let isFound = false
   if (!email || !password ){
       window.alert("Email and Password is requaired")
+      return
     }
 
-  for (let index = 0; index < USER_DATA.length; index++) {
-    const element = USER_DATA[index]; 
-    console.log(email,element.email)
-    if(email.toLowerCase()!== element.email){
-      window.alert("Account does not excist")
-      
-    }
-    if(email.toLowerCase()===element.email && password!==element.password){
-      window.alert("Password missmatch")
-      
-    }
-      
-    
-    
-
-    if(email.toLowerCase()===element.email && password===element.password){ 
-      isFound=true;
-      window.alert("Login successfull")
-      localStorage.setItem("user",JSON.stringify({id:element.id,email,name:element.name, islogin:true}))
-      navigate('/profile')
-
-
-    }
-    
+  const element = USER_DATA.find((user) => user.email === email.toLowerCase())
+  if (!element) {
+    window.alert("Account does not excist")
+    return
   }
 
+  if (password !== element.password) {
+    window.alert("Password missmatch")
+    return
+  }
+
+  window.alert("Login successfull")
+  localStorage.setItem("user",JSON.stringify({id:element.id,email,name:element.name, islogin:true , role: element.role}))
+  navigate(element.role === "admin" ? "/admin-profile" : "/profile")
 
 
 }
