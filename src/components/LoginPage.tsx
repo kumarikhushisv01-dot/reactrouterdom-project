@@ -39,7 +39,7 @@ const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
       
     }
     if(email.toLowerCase()===element.email && password!==element.password){
-      window.alert("Password missmach")
+      window.alert("Password missmatch")
       
     }
       
@@ -48,7 +48,7 @@ const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
 
     if(email.toLowerCase()===element.email && password===element.password){ 
       isFound=true;
-      window.alert("Login succusesfull")
+      window.alert("Login successfull")
       localStorage.setItem("user",JSON.stringify({id:element.id,email,name:element.name, islogin:true}))
       navigate('/profile')
 

@@ -15,7 +15,7 @@ const ProfilePage = () => {
   return (
     
     <> 
-    <Card className='w-100 h-50 block mx-auto p-5 mt-30 border border-purple-600  text-2xl font-light  '>
+    <Card className='w-120 h-50 block mx-auto p-10 mt-30 border border-purple-600  text-2xl font-light  '>
       <p> your id : {user?.id || 0}</p>
       <p> your email id : {user?.email || "Gest email"}</p>
       <p> your name : {user?.name || "Guet User"}</p>
