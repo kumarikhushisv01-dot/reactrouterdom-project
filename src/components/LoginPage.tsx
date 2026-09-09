@@ -5,6 +5,7 @@ import { Card,  CardContent, CardDescription, CardFooter, CardHeader, CardTitle 
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 
 const USER_DATA = [
@@ -27,22 +28,22 @@ const navigate = useNavigate()
 const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
   e.preventDefault()
   if (!email || !password ){
-      window.alert("Email and Password is requaired")
+      toast.warning("Email and Password is requaired")
       return
     }
 
   const element = USER_DATA.find((user) => user.email === email.toLowerCase())
   if (!element) {
-    window.alert("Account does not excist")
+    toast.info("Account does not excist")
     return
   }
 
   if (password !== element.password) {
-    window.alert("Password missmatch")
+    toast.info("Password missmatch")
     return
   }
 
-  window.alert("Login successfull")
+  toast.success("Login successfull")
   localStorage.setItem("user",JSON.stringify({id:element.id,email,name:element.name, islogin:true , role: element.role}))
   navigate(element.role === "admin" ? "/admin-profile" : "/profile")
 
