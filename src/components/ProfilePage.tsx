@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card } from './ui/card'
 import { Outlet } from 'react-router-dom'
+import { Button } from './ui/button'
 
 const ProfilePage = () => { 
   const [user,setUser] = useState()
@@ -8,7 +9,16 @@ const ProfilePage = () => {
     const data = localStorage.getItem("user") 
     const value = JSON.parse(data)
     setUser(value)
-  } 
+  }  
+  const handleLogut = ()=>{
+    localStorage.removeItem("user")
+    window.location.reload()
+  }
+
+
+
+
+
   useEffect(()=>{
     getUser()
   },[])
@@ -20,7 +30,8 @@ const ProfilePage = () => {
       <p> your id : {user?.id || 0}</p>
       <p> your email id : {user?.email || "Guest email"}</p>
       <p> your name : {user?.name || "Guest User"}</p>
-    </Card>
+    </Card> 
+    <Button variant={"outline"} className='mx-100 mt-5' onClick={handleLogut}>Logout</Button>
     
     <Outlet/>
     

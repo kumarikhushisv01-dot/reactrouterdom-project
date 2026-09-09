@@ -8,7 +8,7 @@ function ProtectedRoute (){
     const data = localStorage.getItem("user")
     const value = JSON.parse(data)
     const isLogin = value?.islogin 
-    const role =value?.role
+    const role = value?.role
     if (!isLogin){
         return <Navigate to={"/"} replace/>
 
@@ -23,8 +23,13 @@ function GuestUser  (){
       const data = localStorage.getItem("user")
     const value = JSON.parse(data)
     const isLogin = value?.islogin
-    return isLogin? <Navigate to={"/profile"} replace/>:<Outlet/>
-
+    const role = value?.role
+    if(isLogin){
+        return <Navigate to={"/profile"}/>
+    }
+    return <Outlet/>
+    //return isLogin? <Navigate to={"/profile"} replace/>:<Outlet/>
+    
 } 
 function AdminRoute (){
      const data = localStorage.getItem("user")
